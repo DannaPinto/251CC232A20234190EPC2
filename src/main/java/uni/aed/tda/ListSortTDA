@@ -1,1 +1,6 @@
+package uni.aed.tda.ListTDA;
 
+public interface ListSortTDA<E extends Comparable<E>> extends ListTDA<E> {
+    @Override
+    void add(E elemento) throws IllegalArgumentException;
+}
