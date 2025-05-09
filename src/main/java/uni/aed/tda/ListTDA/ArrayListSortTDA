@@ -1,1 +1,34 @@
+package uni.aed.tda.ArrayListSortTDA;
 
+import uni.aed.tda.ListTDA.ListSortTDA;
+import uni.aed.tda.ListTDA.IteratorTDA;
+
+public class ArrayListSortTDA<E extends Comparable<E>> implements ListSortTDA<E> {
+    private final ListTDA<E> lista = new uni.aed.tda.ArrayListTDA.ArrayListTDA<>();
+
+    @Override
+    public void add(E elemento) {
+        if (lista.contain(elemento))
+            throw new IllegalArgumentException("Elemento duplicado: " + elemento);
+
+        int posicion = 0;
+        IteratorTDA<E> it = lista.iterador();
+        while (it.hasNext() && it.next().compareTo(elemento) < 0) {
+            posicion++;
+        }
+        lista.add(posicion, elemento);
+    }
+
+    // Delegar los demás métodos de ListTDA a la lista interna
+    @Override
+    public boolean contain(E elemento) { return lista.contain(elemento); }
+    @Override
+    public int indexOf(E elemento) { return lista.indexOf(elemento); }
+    @Override
+    public void clear() { lista.clear(); }
+    @Override
+    public int size() { return lista.size(); }
+    @Override
+    public String toString() { return lista.toString(); }
+    // ... Implementar todos los métodos restantes de ListTDA de manera similar
+}
